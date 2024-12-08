@@ -6,24 +6,29 @@
 //
 
 import UIKit
+import WebKit
 
 class HomeViewController: UIViewController {
+    private var webView = WKWebView()
+    
+    override func loadView() {
+        let webConfiguration = WKWebViewConfiguration()
+        self.webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        self.view = webView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .systemBackground
+        setupURL()
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupURL() {
+        let urlString = "https://intip.inuappcenter.kr/m/home"
+        if let url = URL(string: urlString) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
-    */
-
 }
