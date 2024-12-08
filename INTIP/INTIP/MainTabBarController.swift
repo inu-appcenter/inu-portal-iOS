@@ -26,12 +26,12 @@ class MainTabBarController: UITabBarController {
         let writeVC = UINavigationController(rootViewController: WriteViewController())
         let mypageVC = UINavigationController(rootViewController: MyPageViewController())
         
-        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "1.circle"), tag: 0)
-        saveVC.tabBarItem = UITabBarItem(title: "Save", image: UIImage(systemName: "1.circle"), tag: 1)
-        writeVC.tabBarItem = UITabBarItem(title: "Write", image: UIImage(systemName: "1.circle"), tag: 2)
-        mypageVC.tabBarItem = UITabBarItem(title: "Mypage", image: UIImage(systemName: "1.circle"), tag: 3)
+        homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "icon_home_active"), tag: 0)
+        saveVC.tabBarItem = UITabBarItem(title: "Save", image: UIImage(named: "icon_input"), tag: 1)
+        writeVC.tabBarItem = UITabBarItem(title: "Write", image: UIImage(named: "icon_group"), tag: 2)
+        mypageVC.tabBarItem = UITabBarItem(title: "Mypage", image: UIImage(named: "icon_profile"), tag: 3)
         
         self.viewControllers = [homeVC, saveVC, writeVC, mypageVC]
+        self.tabBar.tintColor = UIColor(hexCode: "9CAFE2")
     }
 }
-

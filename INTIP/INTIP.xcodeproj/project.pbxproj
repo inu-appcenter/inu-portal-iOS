@@ -18,6 +18,7 @@
 		A69728442D0432DD007C76C6 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728432D0432DD007C76C6 /* SaveViewController.swift */; };
 		A69728462D0432E7007C76C6 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728452D0432E7007C76C6 /* WriteViewController.swift */; };
 		A69728482D0432F5007C76C6 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728472D0432F5007C76C6 /* MyPageViewController.swift */; };
+		A697284A2D054518007C76C6 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728492D054518007C76C6 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		A69728432D0432DD007C76C6 /* SaveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewController.swift; sourceTree = "<group>"; };
 		A69728452D0432E7007C76C6 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		A69728472D0432F5007C76C6 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		A69728492D054518007C76C6 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				A69728432D0432DD007C76C6 /* SaveViewController.swift */,
 				A69728452D0432E7007C76C6 /* WriteViewController.swift */,
 				A69728472D0432F5007C76C6 /* MyPageViewController.swift */,
+				A69728492D054518007C76C6 /* UIColor+.swift */,
 			);
 			path = INTIP;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A69728462D0432E7007C76C6 /* WriteViewController.swift in Sources */,
+				A697284A2D054518007C76C6 /* UIColor+.swift in Sources */,
 				A697282D2D042DD9007C76C6 /* MainTabBarController.swift in Sources */,
 				A69728482D0432F5007C76C6 /* MyPageViewController.swift in Sources */,
 				A69728442D0432DD007C76C6 /* SaveViewController.swift in Sources */,
