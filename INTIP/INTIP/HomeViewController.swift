@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupURL() {
-        let urlString = "https://intip.inuappcenter.kr/m/home"
+        let urlString = "https://intip.inuappcenter.kr/app/home"
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             webView.load(request)
