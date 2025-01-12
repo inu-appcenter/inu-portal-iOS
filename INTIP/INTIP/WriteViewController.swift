@@ -5,6 +5,7 @@
 //  Created by 이대현 on 12/7/24.
 //
 
+import AVFoundation
 import UIKit
 import WebKit
 
@@ -21,7 +22,7 @@ class WriteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupURL()
-        // Do any additional setup after loading the view.
+        checkCameraPermission()
     }
     
     private func setupURL() {
@@ -29,6 +30,16 @@ class WriteViewController: UIViewController {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             webView.load(request)
+        }
+    }
+    
+    private func checkCameraPermission() {
+        AVCaptureDevice.requestAccess(for: .video) { isGranted in
+            if isGranted {
+                print("Camera: 권한 허용")
+            } else {
+                print("Camera: 권한 거부")
+            }
         }
     }
 }
