@@ -13,7 +13,6 @@
 		A69728322D042DE5007C76C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A69728312D042DE5007C76C6 /* Assets.xcassets */; };
 		A69728352D042DE6007C76C6 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A69728342D042DE6007C76C6 /* Base */; };
 		A697283E2D04318D007C76C6 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A697283D2D04318D007C76C6 /* SnapKit */; };
-		A69728402D04318D007C76C6 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = A697283F2D04318D007C76C6 /* SnapKit-Dynamic */; };
 		A69728422D0432D1007C76C6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728412D0432D1007C76C6 /* HomeViewController.swift */; };
 		A69728442D0432DD007C76C6 /* SaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728432D0432DD007C76C6 /* SaveViewController.swift */; };
 		A69728462D0432E7007C76C6 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728452D0432E7007C76C6 /* WriteViewController.swift */; };
@@ -42,7 +41,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A697283E2D04318D007C76C6 /* SnapKit in Frameworks */,
-				A69728402D04318D007C76C6 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +99,6 @@
 			name = INTIP;
 			packageProductDependencies = (
 				A697283D2D04318D007C76C6 /* SnapKit */,
-				A697283F2D04318D007C76C6 /* SnapKit-Dynamic */,
 			);
 			productName = INTIP;
 			productReference = A69728252D042DD9007C76C6 /* INTIP.app */;
@@ -309,8 +306,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = AANGG4Q668;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = INTIP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -322,8 +322,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.INTIP;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.inuappcenter.intip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = INTIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -335,8 +337,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = AANGG4Q668;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = INTIP/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -348,8 +353,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.INTIP;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.inuappcenter.intip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = INTIP;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -395,11 +402,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A697283C2D04318D007C76C6 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		A697283F2D04318D007C76C6 /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A697283C2D04318D007C76C6 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
