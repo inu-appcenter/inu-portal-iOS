@@ -21,7 +21,7 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupURL()
-        // Do any additional setup after loading the view.
+        webView.uiDelegate = self
     }
     
     private func setupURL() {
@@ -29,6 +29,21 @@ class MyPageViewController: UIViewController {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
             webView.load(request)
+        }
+    }
+}
+
+extension MyPageViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "확인", style: .cancel) {
+            _ in completionHandler()
+        }
+        
+        alertController.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

@@ -23,6 +23,7 @@ class WriteViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupURL()
         checkCameraPermission()
+        webView.uiDelegate = self
     }
     
     private func setupURL() {
@@ -40,6 +41,21 @@ class WriteViewController: UIViewController {
             } else {
                 print("Camera: 권한 거부")
             }
+        }
+    }
+}
+
+extension WriteViewController: WKUIDelegate {
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "확인", style: .cancel) {
+            _ in completionHandler()
+        }
+        
+        alertController.addAction(cancelAction)
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }
