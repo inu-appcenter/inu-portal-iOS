@@ -46,4 +46,22 @@ extension SaveViewController: WKUIDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
+    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
+        alertController.addTextField { textField in
+            textField.text = defaultText ?? ""
+        }
+        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { action in completionHandler("") }))
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { action in
+            if let text = alertController.textFields?.first?.text {
+                completionHandler(text)
+            } else {
+                completionHandler("")
+            }
+        }))
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
 }
