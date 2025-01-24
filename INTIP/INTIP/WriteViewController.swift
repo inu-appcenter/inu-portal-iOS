@@ -76,4 +76,12 @@ extension WriteViewController: WKUIDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        
+        return nil
+    }
 }
