@@ -24,6 +24,7 @@ class WriteViewController: UIViewController {
         setupURL()
         checkCameraPermission()
         webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
     }
     
     private func setupURL() {

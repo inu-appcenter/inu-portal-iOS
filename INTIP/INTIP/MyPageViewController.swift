@@ -22,6 +22,7 @@ class MyPageViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupURL()
         webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
     }
     
     private func setupURL() {
