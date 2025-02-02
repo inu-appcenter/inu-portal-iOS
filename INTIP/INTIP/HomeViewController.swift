@@ -9,6 +9,7 @@ import UIKit
 import WebKit
 
 class HomeViewController: UIViewController {
+    private var lastLogined = false
     private var webView = WKWebView()
     
     override func loadView() {
@@ -22,7 +23,20 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupURL()
         webView.uiDelegate = self
+        webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear")
+        Task {
+            let currentStatus = await checkLogin()
+            if self.lastLogined != currentStatus {
+                print("login status change detected, reload page")
+                self.lastLogined = currentStatus
+                self.setupURL()
+            }
+        }
     }
     
     private func setupURL() {
@@ -32,9 +46,21 @@ class HomeViewController: UIViewController {
             webView.load(request)
         }
     }
+    
+    private func checkLogin() async -> Bool {
+        let result = try? await self.webView.evaluateJavaScript("window.localStorage.getItem('tokenInfo');")
+        if result != nil,
+           let data = result as? String,
+           let tokenInfo = try? JSONDecoder().decode(TokenInfo.self, from: data.data(using: .utf8)!) {
+            print(tokenInfo)
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
-extension HomeViewController: WKUIDelegate {
+extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         
@@ -72,5 +98,19 @@ extension HomeViewController: WKUIDelegate {
         }
         
         return nil
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let urlString = navigationAction.request.url?.absoluteString ?? ""
+        print(urlString)
+        decisionHandler(.allow)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        print("didFinish")
+        Task {
+            self.lastLogined = await checkLogin()
+            print("logined : ", self.lastLogined)
+        }
     }
 }

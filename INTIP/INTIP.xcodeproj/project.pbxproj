@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A618418F2D4B7DDE0058D45A /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A618418E2D4B7DDD0058D45A /* TokenInfo.swift */; };
 		A69728292D042DD9007C76C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728282D042DD9007C76C6 /* AppDelegate.swift */; };
 		A697282B2D042DD9007C76C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A697282A2D042DD9007C76C6 /* SceneDelegate.swift */; };
 		A697282D2D042DD9007C76C6 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A697282C2D042DD9007C76C6 /* MainTabBarController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A618418E2D4B7DDD0058D45A /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfo.swift; sourceTree = "<group>"; };
 		A69728252D042DD9007C76C6 /* INTIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INTIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A69728282D042DD9007C76C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A697282A2D042DD9007C76C6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				A69728452D0432E7007C76C6 /* WriteViewController.swift */,
 				A69728472D0432F5007C76C6 /* MyPageViewController.swift */,
 				A69728492D054518007C76C6 /* UIColor+.swift */,
+				A618418E2D4B7DDD0058D45A /* TokenInfo.swift */,
 			);
 			path = INTIP;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				A697282D2D042DD9007C76C6 /* MainTabBarController.swift in Sources */,
 				A69728482D0432F5007C76C6 /* MyPageViewController.swift in Sources */,
 				A69728442D0432DD007C76C6 /* SaveViewController.swift in Sources */,
+				A618418F2D4B7DDE0058D45A /* TokenInfo.swift in Sources */,
 				A69728292D042DD9007C76C6 /* AppDelegate.swift in Sources */,
 				A697282B2D042DD9007C76C6 /* SceneDelegate.swift in Sources */,
 				A69728422D0432D1007C76C6 /* HomeViewController.swift in Sources */,
