@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 class WriteViewController: UIViewController {
+    private let rootUrl = "https://intip.inuappcenter.kr/app/write"
     private var lastLogined = false
     private var webView = WKWebView()
     
@@ -42,8 +43,7 @@ class WriteViewController: UIViewController {
     }
     
     private func setupURL() {
-        let urlString = "https://intip.inuappcenter.kr/app/write"
-        if let url = URL(string: urlString) {
+        if let url = URL(string: rootUrl) {
             let request = URLRequest(url: url)
             webView.load(request)
         }
@@ -115,6 +115,15 @@ extension WriteViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let urlString = navigationAction.request.url?.absoluteString ?? ""
         print(urlString)
+        if urlString != rootUrl {
+            self.tabBarController?.tabBar.isHidden = true
+        } else {
+            self.tabBarController?.tabBar.isHidden = false
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            self.tabBarController?.tabBar.standardAppearance = tabBarAppearance
+            self.tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
+        }
         decisionHandler(.allow)
     }
     
