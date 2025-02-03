@@ -103,6 +103,14 @@ extension MyPageViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let urlString = navigationAction.request.url?.absoluteString ?? ""
         print(urlString)
+        
+        if urlString == "https://intip.inuappcenter.kr/app/home" {
+            webView.load(URLRequest(url: URL(string: rootUrl)!))
+            self.tabBarController?.selectedIndex = 0
+            decisionHandler(.cancel)
+            return
+        }
+        
         if urlString != rootUrl {
             self.tabBarController?.tabBar.isHidden = true
         } else {
