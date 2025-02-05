@@ -52,7 +52,6 @@ class MyPageViewController: UIViewController {
         if result != nil,
            let data = result as? String,
            let tokenInfo = try? JSONDecoder().decode(TokenInfo.self, from: data.data(using: .utf8)!) {
-            print(tokenInfo)
             return true
         } else {
             return false
@@ -140,8 +139,14 @@ extension MyPageViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("didFinish")
         Task {
-            self.lastLogined = await checkLogin()
-            print("logined : ", self.lastLogined)
+            let currentStatus = await checkLogin()
+            print("logined : ", currentStatus)
+            if self.lastLogined != currentStatus {
+                self.lastLogined = currentStatus
+                if let url = webView.url {
+                    webView.load(URLRequest(url: url))
+                }
+            }
         }
     }
 }
