@@ -25,7 +25,6 @@ class SaveViewController: UIViewController {
         setupURL()
         webView.uiDelegate = self
         webView.navigationDelegate = self
-        webView.allowsBackForwardNavigationGestures = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,12 +125,14 @@ extension SaveViewController: WKUIDelegate, WKNavigationDelegate {
         
         if urlString != rootUrl {
             self.tabBarController?.tabBar.isHidden = true
+            webView.allowsBackForwardNavigationGestures = true
         } else {
             self.tabBarController?.tabBar.isHidden = false
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()
             self.tabBarController?.tabBar.standardAppearance = tabBarAppearance
             self.tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
+            webView.allowsBackForwardNavigationGestures = false
         }
         decisionHandler(.allow)
     }
