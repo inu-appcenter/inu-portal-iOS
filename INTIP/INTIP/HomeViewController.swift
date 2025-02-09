@@ -57,6 +57,13 @@ class HomeViewController: UIViewController {
             return false
         }
     }
+    
+    @objc func imageSaved(image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeMutableRawPointer?) {
+        let alertController = UIAlertController(title: "이미지 저장 완료!", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "확인", style: .default))
+        self.present(alertController, animated: true, completion: nil)
+        print("finish save image to album")
+    }
 }
 
 extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
@@ -115,6 +122,19 @@ extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let urlString = navigationAction.request.url?.absoluteString ?? ""
+        if navigationAction.shouldPerformDownload {
+            print("test")
+            // data:image/png;base64 뺀 나머지 부분만 가져와서
+            let cleanBase64String = urlString.replacingOccurrences(of: "data:image/png;base64", with: "")
+            if let imageData = Data(base64Encoded: cleanBase64String, options: .ignoreUnknownCharacters) {
+                if let image = UIImage(data: imageData) {
+                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(image: didFinishSavingWithError:contextInfo:)), nil)
+                }
+            }
+            decisionHandler(.cancel)
+            return
+        }
+        
         print(urlString)
         if urlString != rootUrl {
             self.tabBarController?.tabBar.isHidden = true
