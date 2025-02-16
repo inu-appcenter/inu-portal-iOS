@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
         setupURL()
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
