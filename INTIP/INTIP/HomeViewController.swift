@@ -9,14 +9,16 @@ import UIKit
 import WebKit
 
 class HomeViewController: UIViewController {
-    private let rootUrl = "https://intip.inuappcenter.kr/app/home"
+    private let rootUrl = "https://intip.inuappcenter.kr/m/home"
     private var lastLogined = false
     private var webView = WKWebView()
     
     override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        self.webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        self.view = webView
+        
+        super.loadView()
+        setupWebView()
+
+
     }
 
     override func viewDidLoad() {
@@ -29,6 +31,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         print("viewWillAppear")
         Task {
             let currentStatus = await checkLogin()
@@ -39,6 +42,27 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func setupWebView() {
+        let webConfiguration = WKWebViewConfiguration()
+        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.scrollView.isScrollEnabled = true
+        webView.scrollView.minimumZoomScale = 1.0
+        webView.scrollView.maximumZoomScale = 1.0
+
+        view.addSubview(webView)
+        
+        let bottomInset = view.safeAreaInsets.bottom + 8  // 홈바 높이 정도
+        
+        NSLayoutConstraint.activate([
+            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottomInset)
+        ])
+    }
+
     
     private func setupURL() {
         if let url = URL(string: rootUrl) {
@@ -69,15 +93,9 @@ class HomeViewController: UIViewController {
 extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
         let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "확인", style: .cancel) {
-            _ in completionHandler()
-        }
-        
+        let cancelAction = UIAlertAction(title: "확인", style: .cancel) { _ in completionHandler() }
         alertController.addAction(cancelAction)
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
+        DispatchQueue.main.async { self.present(alertController, animated: true, completion: nil) }
     }
     
     func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
@@ -85,30 +103,17 @@ extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
         alertController.addTextField { textField in
             textField.text = defaultText ?? ""
         }
-        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { action in completionHandler("") }))
-        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { action in
-            if let text = alertController.textFields?.first?.text {
-                completionHandler(text)
-            } else {
-                completionHandler("")
-            }
+        alertController.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in completionHandler("") }))
+        alertController.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+            completionHandler(alertController.textFields?.first?.text ?? "")
         }))
-        DispatchQueue.main.async {
-            self.present(alertController, animated: true, completion: nil)
-        }
+        DispatchQueue.main.async { self.present(alertController, animated: true, completion: nil) }
     }
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        
-        alertController.addAction(UIAlertAction(title: "취소", style: .default, handler: { (action) in
-            completionHandler(false)
-        }))
-        
-        alertController.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { (action) in
-            completionHandler(true)
-        }))
-        
+        alertController.addAction(UIAlertAction(title: "취소", style: .default) { _ in completionHandler(false) })
+        alertController.addAction(UIAlertAction(title: "확인", style: .destructive) { _ in completionHandler(true) })
         present(alertController, animated: true)
     }
     
@@ -116,26 +121,22 @@ extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
         if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
         }
-        
         return nil
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let urlString = navigationAction.request.url?.absoluteString ?? ""
+        
         if navigationAction.shouldPerformDownload {
-            print("test")
-            // data:image/png;base64 뺀 나머지 부분만 가져와서
             let cleanBase64String = urlString.replacingOccurrences(of: "data:image/png;base64", with: "")
-            if let imageData = Data(base64Encoded: cleanBase64String, options: .ignoreUnknownCharacters) {
-                if let image = UIImage(data: imageData) {
-                    UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(image: didFinishSavingWithError:contextInfo:)), nil)
-                }
+            if let imageData = Data(base64Encoded: cleanBase64String, options: .ignoreUnknownCharacters),
+               let image = UIImage(data: imageData) {
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved(image: didFinishSavingWithError:contextInfo:)), nil)
             }
             decisionHandler(.cancel)
             return
         }
         
-        print(urlString)
         if urlString != rootUrl {
             self.tabBarController?.tabBar.isHidden = true
             webView.allowsBackForwardNavigationGestures = true
