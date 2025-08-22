@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2641381CF6C5F3FD69EC7861 /* Pods_INTIP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5124E4F8D73C127EC14D5052 /* Pods_INTIP.framework */; };
+		295C22422E58A9CE00C6BA50 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 295C22412E58A9CE00C6BA50 /* GoogleService-Info.plist */; };
 		A618418F2D4B7DDE0058D45A /* TokenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A618418E2D4B7DDD0058D45A /* TokenInfo.swift */; };
 		A69728292D042DD9007C76C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69728282D042DD9007C76C6 /* AppDelegate.swift */; };
 		A697282B2D042DD9007C76C6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A697282A2D042DD9007C76C6 /* SceneDelegate.swift */; };
@@ -22,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		295C22402E589E4300C6BA50 /* INTIP.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = INTIP.entitlements; sourceTree = "<group>"; };
+		295C22412E58A9CE00C6BA50 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5124E4F8D73C127EC14D5052 /* Pods_INTIP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_INTIP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BDDAFE4623DA46C24D441D5 /* Pods-INTIP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INTIP.release.xcconfig"; path = "Target Support Files/Pods-INTIP/Pods-INTIP.release.xcconfig"; sourceTree = "<group>"; };
+		9AF62BF3E16C0863A1FE7E5C /* Pods-INTIP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-INTIP.debug.xcconfig"; path = "Target Support Files/Pods-INTIP/Pods-INTIP.debug.xcconfig"; sourceTree = "<group>"; };
 		A618418E2D4B7DDD0058D45A /* TokenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenInfo.swift; sourceTree = "<group>"; };
 		A69728252D042DD9007C76C6 /* INTIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = INTIP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A69728282D042DD9007C76C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -43,17 +50,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				A697283E2D04318D007C76C6 /* SnapKit in Frameworks */,
+				2641381CF6C5F3FD69EC7861 /* Pods_INTIP.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A0CC80EDDB12EAC4D8EBC52 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5124E4F8D73C127EC14D5052 /* Pods_INTIP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		571AAAF0B464D17EA0608D03 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9AF62BF3E16C0863A1FE7E5C /* Pods-INTIP.debug.xcconfig */,
+				6BDDAFE4623DA46C24D441D5 /* Pods-INTIP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A697281C2D042DD9007C76C6 = {
 			isa = PBXGroup;
 			children = (
 				A69728272D042DD9007C76C6 /* INTIP */,
 				A69728262D042DD9007C76C6 /* Products */,
+				571AAAF0B464D17EA0608D03 /* Pods */,
+				1A0CC80EDDB12EAC4D8EBC52 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +95,8 @@
 		A69728272D042DD9007C76C6 /* INTIP */ = {
 			isa = PBXGroup;
 			children = (
+				295C22412E58A9CE00C6BA50 /* GoogleService-Info.plist */,
+				295C22402E589E4300C6BA50 /* INTIP.entitlements */,
 				A69728282D042DD9007C76C6 /* AppDelegate.swift */,
 				A697282A2D042DD9007C76C6 /* SceneDelegate.swift */,
 				A697282C2D042DD9007C76C6 /* MainTabBarController.swift */,
@@ -91,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A69728392D042DE6007C76C6 /* Build configuration list for PBXNativeTarget "INTIP" */;
 			buildPhases = (
+				FD26E5E4B3B41359926076CE /* [CP] Check Pods Manifest.lock */,
 				A69728212D042DD9007C76C6 /* Sources */,
 				A69728222D042DD9007C76C6 /* Frameworks */,
 				A69728232D042DD9007C76C6 /* Resources */,
+				7F16A52164413B7676BF287D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -150,10 +181,57 @@
 			files = (
 				A69728322D042DE5007C76C6 /* Assets.xcassets in Resources */,
 				A69728352D042DE6007C76C6 /* Base in Resources */,
+				295C22422E58A9CE00C6BA50 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7F16A52164413B7676BF287D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-INTIP/Pods-INTIP-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-INTIP/Pods-INTIP-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-INTIP/Pods-INTIP-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD26E5E4B3B41359926076CE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-INTIP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A69728212D042DD9007C76C6 /* Sources */ = {
@@ -223,7 +301,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -286,7 +364,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -307,25 +385,32 @@
 		};
 		A697283A2D042DE6007C76C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AF62BF3E16C0863A1FE7E5C /* Pods-INTIP.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = INTIP/INTIP.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = AANGG4Q668;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = INTIP/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "게시글 사진 업로드를 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "AI 생성 이미지를 저장하기 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.inuappcenter.intip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -338,25 +423,32 @@
 		};
 		A697283B2D042DE6007C76C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BDDAFE4623DA46C24D441D5 /* Pods-INTIP.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = INTIP/INTIP.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = AANGG4Q668;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = INTIP/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_NSCameraUsageDescription = "게시글 사진 업로드를 위해 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "AI 생성 이미지를 저장하기 위해 앨범 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = kr.inuappcenter.intip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
