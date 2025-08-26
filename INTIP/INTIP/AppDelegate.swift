@@ -12,7 +12,7 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: UISceneSession Lifecycle
-    
     func application(_ application: UIApplication,
                      configurationForConnecting connectingSceneSession: UISceneSession,
                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -48,25 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
     
     // MARK: APNs 토큰 전달
-    
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
         // APNs 토큰을 Firebase에 전달
         Messaging.messaging().apnsToken = deviceToken
         
-        // APNs 토큰을 문자열로 변환하여 출력 (선택 사항)
+        // APNs 토큰 확인용 로그 (선택)
         let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         print("APNs 토큰:", tokenString)
-        
-        // FCM 토큰 가져오기 및 출력
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("FCM 토큰 가져오기 실패:", error)
-            } else if let token = token {
-                print("🥳 FCM 토큰:", token)
-            }
-        }
     }
     
     func application(_ application: UIApplication,
@@ -77,24 +66,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: Firebase Messaging Delegate
 extension AppDelegate: MessagingDelegate {
-    
-    // FCM 토큰이 갱신될 때 호출
+    // FCM 토큰 갱신 시 로그만 출력
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("Firebase registration token: \(String(describing: fcmToken))")
+        print("Firebase registration token 갱신됨: \(String(describing: fcmToken))")
     }
 }
 
 // MARK: UNUserNotificationCenter Delegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
-    // 앱이 포그라운드 상태일 때 알림이 도착하면 호출
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .list, .badge, .sound])
     }
     
-    // 사용자가 알림을 탭했을 때 호출
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
