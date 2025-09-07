@@ -79,6 +79,9 @@ class HomeViewController: UIViewController {
         webView.scrollView.minimumZoomScale = 1.0
         webView.scrollView.maximumZoomScale = 1.0
         
+        webView.scrollView.contentInsetAdjustmentBehavior = .never
+
+        
         view.addSubview(webView)
         NSLayoutConstraint.activate([
             webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -87,7 +90,7 @@ class HomeViewController: UIViewController {
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
-        // ✅ 뒤로가기 제스처 허용
+        // 뒤로가기 제스처 허용
         webView.allowsBackForwardNavigationGestures = true
     }
 
@@ -153,7 +156,12 @@ extension HomeViewController {
     
     private func postFcmTokenToWebView() {
         guard isWebViewLoaded, !fcmToken.isEmpty else { return }
-        let js = "window.onReceiveFcmToken && window.onReceiveFcmToken('\(fcmToken)');"
+
+        // JS 문자열 생성 (문자열로 전달)
+        let js = "window.onReceiveFcmToken && window.onReceiveFcmToken('\(fcmToken)'); void(0);"
+        print(fcmToken)
+
+        // 웹뷰에서 JS 실행
         webView.evaluateJavaScript(js) { result, error in
             if let error = error {
                 print("❌ FCM 토큰 전달 실패:", error)
@@ -162,7 +170,10 @@ extension HomeViewController {
             }
         }
     }
+
+
 }
+
 
 // MARK: - WKUIDelegate, WKNavigationDelegate
 extension HomeViewController: WKUIDelegate, WKNavigationDelegate {
