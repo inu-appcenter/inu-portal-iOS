@@ -2,15 +2,12 @@
 //  AppDelegate.swift
 //  INTIP
 //
-//  Created by 이대현 on 12/7/24.
-//
 
 import UIKit
-import Firebase
+import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 
-@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
