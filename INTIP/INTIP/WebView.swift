@@ -41,6 +41,7 @@ struct WebView: UIViewRepresentable {
         contentController.addUserScript(loginScript)
         
         let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback=true //동영상 자동 확대 방지
         config.userContentController = contentController
         
         let webView = WKWebView(frame: .zero, configuration: config)
